@@ -4,8 +4,8 @@ import styles from "./styles.module.css";
 
 const Header = () => {
   return (
-    <header>
-      <nav className="container">
+    <header className={styles.header}>
+      <nav className={`${styles.nav} container`}>
         <Link to="/" className={styles.logo} aria-label="Home">
           <Logo />
         </Link>
