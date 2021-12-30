@@ -1,0 +1,38 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --primary-font: Helvetica, Arial, sans-serif;
+  --secondary-font: "Spectral", Georgia;
+}
+
+body {
+  color: #333333;
+  font-family: var(--primary-font);
+}
+
+ul {
+  list-style: none;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+button,
+input {
+  display: block;
+  color: #333333;
+  font-family: var(--primary-font);
+  font-size: 1rem;
+}
+
+.container {
+  max-width: 50rem;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
