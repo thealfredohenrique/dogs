@@ -12,6 +12,7 @@
 body {
   color: #333333;
   font-family: var(--primary-font);
+  padding-top: 4rem;
 }
 
 ul {
@@ -29,6 +30,10 @@ input {
   color: #333333;
   font-family: var(--primary-font);
   font-size: 1rem;
+}
+
+a {
+  text-decoration: none;
 }
 
 .container {
