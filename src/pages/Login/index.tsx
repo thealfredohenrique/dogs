@@ -13,14 +13,16 @@ const Login = () => {
   if (isLoggedIn) return <Navigate to="/account" />;
 
   return (
-    <>
-      <Routes>
-        <Route path="/" element={<SignIn />} />
-        <Route path="sign-up" element={<SignUp />} />
-        <Route path="forgot-password" element={<ForgotPassword />} />
-        <Route path="reset-password" element={<ResetPassword />} />
-      </Routes>
-    </>
+    <section className={styles.login}>
+      <div className={styles.forms}>
+        <Routes>
+          <Route path="/" element={<SignIn />} />
+          <Route path="sign-up" element={<SignUp />} />
+          <Route path="forgot-password" element={<ForgotPassword />} />
+          <Route path="reset-password" element={<ResetPassword />} />
+        </Routes>
+      </div>
+    </section>
   );
 };
 
