@@ -1,5 +1,6 @@
-import { FormEvent, useContext } from "react";
+import { FormEvent, useContext, useState } from "react";
 import Button from "../../../components/Button";
+import Error from "../../../components/Error";
 import Input from "../../../components/Input";
 import { UserContext } from "../../../contexts/UserContext";
 import useForm from "../../../hooks/useForm";
@@ -7,6 +8,8 @@ import { createUser } from "../../../services/login";
 import styles from "./styles.module.css";
 
 const SignUp = () => {
+  const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
   const username = useForm();
   const email = useForm("email");
   const password = useForm("password");
@@ -17,10 +20,15 @@ const SignUp = () => {
 
     if (username.validate() && email.validate() && password.validate()) {
       try {
+        setError("");
+        setLoading(true);
+
         await createUser(username.value, email.value, password.value);
         handleLogin(username.value, password.value);
-      } catch (error) {
+      } catch (e: any) {
+        setError(e.message);
       } finally {
+        setLoading(false);
       }
     }
   };
@@ -33,7 +41,10 @@ const SignUp = () => {
         <Input label="Username" type="text" name="username" {...username} />
         <Input label="Email" type="email" name="email" {...email} />
         <Input label="Password" type="password" name="password" {...password} />
-        <Button>Register</Button>
+        <Button disabled={loading}>
+          {loading ? "Loading..." : "Register"}
+        </Button>
+        <Error message={error} />
       </form>
     </section>
   );

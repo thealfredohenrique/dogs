@@ -57,5 +57,6 @@ export const createUser = async (
     body: JSON.stringify({ username, email, password }),
   });
 
-  return response.ok;
+  if (!response.ok) throw new Error("Username or e-mail already registered.");
+  else return true;
 };
