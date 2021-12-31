@@ -9,13 +9,13 @@ import styles from "./styles.module.css";
 const SignIn = () => {
   const username = useForm();
   const password = useForm();
-  const { handleLogin } = useContext(UserContext);
+  const { error, loading, handleLogin } = useContext(UserContext);
 
   const handleSubmit = async (event: FormEvent) => {
     event.preventDefault();
 
     if (username.validate() && password.validate()) {
-      handleLogin(username.value, password.value);
+      await handleLogin(username.value, password.value);
     }
   };
 
@@ -26,7 +26,8 @@ const SignIn = () => {
       <form onSubmit={handleSubmit}>
         <Input label="User" type="text" name="username" {...username} />
         <Input label="Password" type="password" name="password" {...password} />
-        <Button>Sign in</Button>
+        <Button disabled={loading}>{loading ? "Loading" : "Sign in"}</Button>
+        {error && <span>{error}</span>}
       </form>
 
       <Link to="/login/sign-up">Sign up</Link>

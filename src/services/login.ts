@@ -16,8 +16,20 @@ export const createToken = async (
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ username, password }),
   });
+
+  if (!response.ok) throw new Error("Username or password is invalid.");
+
   const data = await response.json();
   return data.token;
+};
+
+export const validateToken = async (token: string): Promise<void> => {
+  const response = await fetch(`${ENDPOINT}/jwt-auth/v1/token/validate`, {
+    method: "POST",
+    headers: { Authorization: `Bearer ${token}` },
+  });
+
+  if (!response.ok) throw new Error("Invalid token.");
 };
 
 export const getUser = async (token: string): Promise<IUser> => {
