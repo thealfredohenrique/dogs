@@ -41,6 +41,8 @@ export const UserStorage = ({ children }: IUserStorageProps) => {
         } finally {
           setLoading(false);
         }
+      } else {
+        setIsLoggedIn(false);
       }
     };
 
