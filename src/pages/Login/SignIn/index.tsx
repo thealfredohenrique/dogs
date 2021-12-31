@@ -1,20 +1,21 @@
-import { FormEvent, useState } from "react";
+import { FormEvent, useContext } from "react";
 import { Link } from "react-router-dom";
 import Button from "../../../components/Button";
 import Input from "../../../components/Input";
+import { UserContext } from "../../../contexts/UserContext";
 import useForm from "../../../hooks/useForm";
-import { createToken } from "../../../services/login";
 import styles from "./styles.module.css";
 
 const SignIn = () => {
   const username = useForm();
   const password = useForm();
+  const { handleLogin } = useContext(UserContext);
 
-  const handleSubmit = (event: FormEvent) => {
+  const handleSubmit = async (event: FormEvent) => {
     event.preventDefault();
 
     if (username.validate() && password.validate()) {
-      createToken(username.value, password.value);
+      handleLogin(username.value, password.value);
     }
   };
 
