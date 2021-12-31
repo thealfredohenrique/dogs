@@ -45,3 +45,17 @@ export const getUser = async (token: string): Promise<IUser> => {
     email: data.email,
   };
 };
+
+export const createUser = async (
+  username: string,
+  email: string,
+  password: string
+): Promise<boolean> => {
+  const response = await fetch(`${ENDPOINT}/api/user`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ username, email, password }),
+  });
+
+  return response.ok;
+};
