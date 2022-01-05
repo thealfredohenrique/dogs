@@ -27,6 +27,10 @@ const types: ITypes = {
     message:
       "The password must contain at least eight characters, at least one uppercase letter, one lowercase letter and one number",
   },
+  number: {
+    regex: /^\d+$/,
+    message: "Enter numbers only",
+  },
 };
 
 const useForm = (type?: string | false): IUseForm => {
