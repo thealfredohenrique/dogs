@@ -11,7 +11,10 @@ const Feed = () => {
   return (
     <>
       {selectedPublication && (
-        <FeedModal selectedPublication={selectedPublication} />
+        <FeedModal
+          selectedPublication={selectedPublication}
+          setSelectedPublication={setSelectedPublication}
+        />
       )}
       <FeedPublications onPublicationClick={setSelectedPublication} />
     </>

@@ -19,7 +19,7 @@ const PublicationContent = ({
       </div>
       <div className={styles.details}>
         <div>
-          <p>
+          <p className={styles.author}>
             <Link to={`/profile/${publication.author}`}>
               @{publication.author}
             </Link>

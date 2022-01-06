@@ -1,4 +1,5 @@
-import { useEffect, useState } from "react";
+import { Dispatch, SetStateAction } from "react";
+import { FormEvent, useEffect, useState } from "react";
 import {
   getPublication,
   IDetailedPublication,
@@ -11,9 +12,13 @@ import styles from "./styles.module.css";
 
 interface IFeedModalProps {
   selectedPublication: IPublication;
+  setSelectedPublication: Dispatch<SetStateAction<IPublication | null>>;
 }
 
-const FeedModal = ({ selectedPublication }: IFeedModalProps) => {
+const FeedModal = ({
+  selectedPublication,
+  setSelectedPublication,
+}: IFeedModalProps) => {
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
   const [detailedPublication, setDetailedPublication] =
@@ -37,8 +42,12 @@ const FeedModal = ({ selectedPublication }: IFeedModalProps) => {
     fetchPublication();
   }, [selectedPublication]);
 
+  const handleOutsideClick = (event: FormEvent) => {
+    if (event.target === event.currentTarget) setSelectedPublication(null);
+  };
+
   return (
-    <div className={styles.modal}>
+    <div className={styles.modal} onClick={handleOutsideClick}>
       {error && <Error message={error} />}
       {loading && <Loading />}
       {detailedPublication && (
