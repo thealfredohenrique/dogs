@@ -1,11 +1,15 @@
-import { useEffect, useState } from "react";
+import { Dispatch, SetStateAction, useEffect, useState } from "react";
 import { getPublications, IPublication } from "../../../services/publication";
 import Error from "../../Error";
 import Loading from "../../Loading";
 import FeedPublication from "../FeedPublication";
 import styles from "./styles.module.css";
 
-const FeedPublications = () => {
+interface IFeedPublicationsProps {
+  onPublicationClick: Dispatch<SetStateAction<IPublication | null>>;
+}
+
+const FeedPublications = ({ onPublicationClick }: IFeedPublicationsProps) => {
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
   const [publications, setPublications] = useState<IPublication[] | null>(null);
@@ -35,14 +39,20 @@ const FeedPublications = () => {
   if (error) {
     return <Error message={error} />;
   }
+
   if (loading) {
     return <Loading />;
   }
+
   if (publications) {
     return (
       <ul className={styles.publications}>
         {publications.map((publication) => (
-          <FeedPublication key={publication.id} publication={publication} />
+          <FeedPublication
+            key={publication.id}
+            publication={publication}
+            onPublicationClick={onPublicationClick}
+          />
         ))}
       </ul>
     );

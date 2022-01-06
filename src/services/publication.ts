@@ -25,6 +25,26 @@ export interface IPublication {
   quantityComments: number;
 }
 
+export interface IComment {
+  id: number;
+  agent: string;
+  approved: string;
+  author: string;
+  authorEmail: string;
+  authorIP: string;
+  authorURL: string;
+  content: string;
+  date: Date;
+  publication: number;
+  type: string;
+  userID: number;
+}
+
+export interface IDetailedPublication {
+  publication: IPublication;
+  comments: IComment[];
+}
+
 export const createPublication = async ({
   name,
   weight,
@@ -70,4 +90,41 @@ export const getPublications = async ({
     views: Number(e.acessos),
     quantityComments: Number(e.total_comments),
   }));
+};
+
+export const getPublication = async (
+  id: number
+): Promise<IDetailedPublication> => {
+  const response = await fetch(`${ENDPOINT}/api/photo/${id}`, {
+    method: "GET",
+    cache: "no-store",
+  });
+  const data = await response.json();
+  return {
+    publication: {
+      id: data.photo.id,
+      author: data.photo.author,
+      date: new Date(data.photo.date),
+      name: data.photo.title,
+      weight: Number(data.photo.peso),
+      age: Number(data.photo.idade),
+      imagePath: data.photo.src,
+      views: Number(data.photo.acessos),
+      quantityComments: Number(data.photo.total_comments),
+    },
+    comments: (data.comments as any[]).map((comment) => ({
+      id: Number(comment.comment_ID),
+      agent: comment.comment_agent,
+      approved: comment.comment_approved,
+      author: comment.comment_author,
+      authorEmail: comment.comment_author_email,
+      authorIP: comment.comment_author_IP,
+      authorURL: comment.comment_author_url,
+      content: comment.comment_content,
+      date: new Date(comment.comment_date),
+      publication: Number(comment.comment_post_ID),
+      type: comment.comment_type,
+      userID: Number(comment.user_id),
+    })),
+  };
 };

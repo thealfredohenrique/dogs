@@ -1,12 +1,19 @@
+import { useState } from "react";
+import { IPublication } from "../../services/publication";
 import FeedModal from "./FeedModal";
 import FeedPublications from "./FeedPublications";
 import styles from "./styles.module.css";
 
 const Feed = () => {
+  const [selectedPublication, setSelectedPublication] =
+    useState<IPublication | null>(null);
+
   return (
     <>
-      <FeedModal />
-      <FeedPublications />
+      {selectedPublication && (
+        <FeedModal selectedPublication={selectedPublication} />
+      )}
+      <FeedPublications onPublicationClick={setSelectedPublication} />
     </>
   );
 };
