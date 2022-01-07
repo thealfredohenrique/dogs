@@ -97,6 +97,7 @@ export const getPost = async (id: number): Promise<IDetailedPost> => {
     method: "GET",
     cache: "no-store",
   });
+  if (!response.ok) throw new Error("Post not found.");
   const data = await response.json();
   return {
     post: {
@@ -124,5 +125,35 @@ export const getPost = async (id: number): Promise<IDetailedPost> => {
       type: comment.comment_type,
       userID: Number(comment.user_id),
     })),
+  };
+};
+
+export const createComment = async (
+  id: number,
+  comment: string
+): Promise<IComment> => {
+  const response = await fetch(`${ENDPOINT}/api/comment/${id}`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${window.localStorage.getItem("token")}`,
+    },
+    body: JSON.stringify({ comment }),
+  });
+  if (!response.ok) throw new Error("Could not save comment.");
+  const data = await response.json();
+  return {
+    id: Number(data.comment_ID),
+    agent: data.comment_agent,
+    approved: data.comment_approved,
+    author: data.comment_author,
+    authorEmail: data.comment_author_email,
+    authorIP: data.comment_author_IP,
+    authorURL: data.comment_author_url,
+    content: data.comment_content,
+    date: new Date(data.comment_date),
+    post: Number(data.comment_post_ID),
+    type: data.comment_type,
+    userID: Number(data.user_id),
   };
 };
