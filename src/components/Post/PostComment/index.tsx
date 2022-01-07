@@ -31,15 +31,16 @@ const PostComment = ({ id, onSubmitComment }: IPostCommentProps) => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form className={styles.form} onSubmit={handleSubmit}>
       <textarea
         name="comment"
         id="comment"
+        className={styles.textarea}
         placeholder="Type a comment"
         value={comment}
         onChange={handleChange}
       ></textarea>
-      <button>
+      <button className={styles.button}>
         <Send />
       </button>
       {error && <Error message={error} />}
