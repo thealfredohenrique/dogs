@@ -1,7 +1,7 @@
 import styles from "./styles.module.css";
 
-const Publication = () => {
+const Post = () => {
   return <></>;
 };
 
-export default Publication;
+export default Post;

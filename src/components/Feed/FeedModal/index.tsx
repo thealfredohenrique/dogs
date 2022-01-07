@@ -1,37 +1,33 @@
-import { Dispatch, SetStateAction } from "react";
-import { FormEvent, useEffect, useState } from "react";
 import {
-  getPublication,
-  IDetailedPublication,
-  IPublication,
-} from "../../../services/publication";
+  Dispatch,
+  FormEvent,
+  SetStateAction,
+  useEffect,
+  useState,
+} from "react";
+import { getPost, IDetailedPost, IPost } from "../../../services/post";
 import Error from "../../Error";
 import Loading from "../../Loading";
-import PublicationContent from "../../Publication/PublicationContent";
+import PostContent from "../../Post/PostContent";
 import styles from "./styles.module.css";
 
 interface IFeedModalProps {
-  selectedPublication: IPublication;
-  setSelectedPublication: Dispatch<SetStateAction<IPublication | null>>;
+  selectedPost: IPost;
+  setSelectedPost: Dispatch<SetStateAction<IPost | null>>;
 }
 
-const FeedModal = ({
-  selectedPublication,
-  setSelectedPublication,
-}: IFeedModalProps) => {
+const FeedModal = ({ selectedPost, setSelectedPost }: IFeedModalProps) => {
+  const [detailedPost, setDetailedPost] = useState<IDetailedPost | null>(null);
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
-  const [detailedPublication, setDetailedPublication] =
-    useState<IDetailedPublication | null>(null);
 
   useEffect(() => {
-    const fetchPublication = async () => {
+    const fetchPost = async () => {
       try {
         setError("");
         setLoading(true);
-
-        const response = await getPublication(selectedPublication.id);
-        setDetailedPublication(response);
+        const response = await getPost(selectedPost.id);
+        setDetailedPost(response);
       } catch (e: any) {
         setError(e.message);
       } finally {
@@ -39,20 +35,18 @@ const FeedModal = ({
       }
     };
 
-    fetchPublication();
-  }, [selectedPublication]);
+    fetchPost();
+  }, [selectedPost]);
 
   const handleOutsideClick = (event: FormEvent) => {
-    if (event.target === event.currentTarget) setSelectedPublication(null);
+    if (event.target === event.currentTarget) setSelectedPost(null);
   };
 
   return (
     <div className={styles.modal} onClick={handleOutsideClick}>
       {error && <Error message={error} />}
       {loading && <Loading />}
-      {detailedPublication && (
-        <PublicationContent detailedPublication={detailedPublication} />
-      )}
+      {detailedPost && <PostContent detailedPost={detailedPost} />}
     </div>
   );
 };

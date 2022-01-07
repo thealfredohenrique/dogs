@@ -1,23 +1,23 @@
-.publication:nth-child(2) {
+.post:nth-child(2) {
   grid-column: 2 / 4;
   grid-row: span 2;
 }
 
 @media (max-width: 40rem) {
-  .publication:nth-child(2) {
+  .post:nth-child(2) {
     grid-column: initial;
     grid-row: initial;
   }
 }
 
-.publication {
+.post {
   display: grid;
   border-radius: 0.2rem;
   cursor: pointer;
   overflow: hidden;
 }
 
-.publication img {
+.post img {
   grid-area: 1 / 1;
 }
 
@@ -41,6 +41,6 @@
   margin-right: 0.25rem;
 }
 
-.publication:hover .views {
+.post:hover .views {
   display: flex;
 }

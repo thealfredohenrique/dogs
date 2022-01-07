@@ -1,19 +1,19 @@
 const ENDPOINT = "https://dogsapi.origamid.dev/json";
 
-interface IRequestCreatePublication {
+interface IRequestCreatePost {
   name: string;
   weight: string;
   age: string;
   imageRaw: File;
 }
 
-interface IRequestGetPublications {
+interface IRequestGetPosts {
   page: number;
   quantity: number;
   user: number;
 }
 
-export interface IPublication {
+export interface IPost {
   id: number;
   author: string;
   date: Date;
@@ -35,22 +35,22 @@ export interface IComment {
   authorURL: string;
   content: string;
   date: Date;
-  publication: number;
+  post: number;
   type: string;
   userID: number;
 }
 
-export interface IDetailedPublication {
-  publication: IPublication;
+export interface IDetailedPost {
+  post: IPost;
   comments: IComment[];
 }
 
-export const createPublication = async ({
+export const createPost = async ({
   name,
   weight,
   age,
   imageRaw,
-}: IRequestCreatePublication) => {
+}: IRequestCreatePost) => {
   const formData = new FormData();
   formData.append("nome", name);
   formData.append("peso", weight);
@@ -66,11 +66,11 @@ export const createPublication = async ({
   });
 };
 
-export const getPublications = async ({
+export const getPosts = async ({
   page,
   quantity,
   user,
-}: IRequestGetPublications): Promise<IPublication[]> => {
+}: IRequestGetPosts): Promise<IPost[]> => {
   const response = await fetch(
     `${ENDPOINT}/api/photo/?_page=${page}&_total=${quantity}&_user=${user}`,
     {
@@ -92,16 +92,14 @@ export const getPublications = async ({
   }));
 };
 
-export const getPublication = async (
-  id: number
-): Promise<IDetailedPublication> => {
+export const getPost = async (id: number): Promise<IDetailedPost> => {
   const response = await fetch(`${ENDPOINT}/api/photo/${id}`, {
     method: "GET",
     cache: "no-store",
   });
   const data = await response.json();
   return {
-    publication: {
+    post: {
       id: data.photo.id,
       author: data.photo.author,
       date: new Date(data.photo.date),
@@ -122,7 +120,7 @@ export const getPublication = async (
       authorURL: comment.comment_author_url,
       content: comment.comment_content,
       date: new Date(comment.comment_date),
-      publication: Number(comment.comment_post_ID),
+      post: Number(comment.comment_post_ID),
       type: comment.comment_type,
       userID: Number(comment.user_id),
     })),

@@ -4,7 +4,7 @@ import Button from "../../../components/Button";
 import Error from "../../../components/Error";
 import Input from "../../../components/Input";
 import useForm from "../../../hooks/useForm";
-import { createPublication } from "../../../services/publication";
+import { createPost } from "../../../services/post";
 import styles from "./styles.module.css";
 
 interface IFormImage {
@@ -28,14 +28,12 @@ const Publish = () => {
       try {
         setError("");
         setLoading(true);
-
-        await createPublication({
+        await createPost({
           name: name.value,
           weight: weight.value,
           age: age.value,
           imageRaw: image.raw,
         });
-
         navigate("/account");
       } catch (e: any) {
         setError(e.message);

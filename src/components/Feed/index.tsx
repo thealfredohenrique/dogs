@@ -1,22 +1,21 @@
 import { useState } from "react";
-import { IPublication } from "../../services/publication";
+import { IPost } from "../../services/post";
 import FeedModal from "./FeedModal";
-import FeedPublications from "./FeedPublications";
+import FeedPosts from "./FeedPosts";
 import styles from "./styles.module.css";
 
 const Feed = () => {
-  const [selectedPublication, setSelectedPublication] =
-    useState<IPublication | null>(null);
+  const [selectedPost, setSelectedPost] = useState<IPost | null>(null);
 
   return (
     <>
-      {selectedPublication && (
+      {selectedPost && (
         <FeedModal
-          selectedPublication={selectedPublication}
-          setSelectedPublication={setSelectedPublication}
+          selectedPost={selectedPost}
+          setSelectedPost={setSelectedPost}
         />
       )}
-      <FeedPublications onPublicationClick={setSelectedPublication} />
+      <FeedPosts onPostClick={setSelectedPost} />
     </>
   );
 };

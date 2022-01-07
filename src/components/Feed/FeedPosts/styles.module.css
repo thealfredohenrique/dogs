@@ -1,4 +1,4 @@
-.publications {
+.posts {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   justify-items: center;
@@ -7,7 +7,7 @@
 }
 
 @media (max-width: 40rem) {
-  .publications {
+  .posts {
     grid-template-columns: repeat(2, 1fr);
   }
 }
