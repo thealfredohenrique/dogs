@@ -128,6 +128,16 @@ export const getPost = async (id: number): Promise<IDetailedPost> => {
   };
 };
 
+export const deletePost = async (id: number) => {
+  const response = await fetch(`${ENDPOINT}/api/photo/${id}`, {
+    method: "DELETE",
+    headers: {
+      Authorization: `Bearer ${window.localStorage.getItem("token")}`,
+    },
+  });
+  if (!response.ok) throw new Error("Could not delete the post.");
+};
+
 export const createComment = async (
   id: number,
   comment: string

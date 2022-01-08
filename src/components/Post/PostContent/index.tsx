@@ -1,6 +1,9 @@
+import { useContext } from "react";
 import { Link } from "react-router-dom";
+import { UserContext } from "../../../contexts/UserContext";
 import { IDetailedPost } from "../../../services/post";
 import PostComments from "../PostComments";
+import PostDelete from "../PostDelete";
 import styles from "./styles.module.css";
 
 interface IPostContentProps {
@@ -9,6 +12,7 @@ interface IPostContentProps {
 
 const PostContent = ({ detailedPost }: IPostContentProps) => {
   const { post, comments } = detailedPost;
+  const { user } = useContext(UserContext);
 
   return (
     <div className={styles.content}>
@@ -19,7 +23,11 @@ const PostContent = ({ detailedPost }: IPostContentProps) => {
       <div className={styles.details}>
         <div>
           <p className={styles.author}>
-            <Link to={`/profile/${post.author}`}>@{post.author}</Link>
+            {user && user.username === post.author ? (
+              <PostDelete id={post.id} />
+            ) : (
+              <Link to={`/profile/${post.author}`}>@{post.author}</Link>
+            )}
             <span className={styles.views}>{post.views}</span>
           </p>
 
