@@ -2,6 +2,7 @@ import { useContext } from "react";
 import { Link } from "react-router-dom";
 import { UserContext } from "../../../contexts/UserContext";
 import { IDetailedPost } from "../../../services/post";
+import Image from "../../Image";
 import PostComments from "../PostComments";
 import PostDelete from "../PostDelete";
 import styles from "./styles.module.css";
@@ -17,7 +18,7 @@ const PostContent = ({ detailedPost }: IPostContentProps) => {
   return (
     <div className={styles.content}>
       <div className={styles.image}>
-        <img src={post.imagePath} alt={post.name} />
+        <Image src={post.imagePath} alt={post.name} />
       </div>
 
       <div className={styles.details}>

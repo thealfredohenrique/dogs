@@ -17,7 +17,7 @@
   overflow: hidden;
 }
 
-.post img {
+.post > div {
   grid-area: 1 / 1;
 }
 

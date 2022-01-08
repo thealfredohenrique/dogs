@@ -1,5 +1,6 @@
 import { Dispatch, SetStateAction } from "react";
 import { IPost } from "../../../services/post";
+import Image from "../../Image";
 import styles from "./styles.module.css";
 
 interface IFeedPostProps {
@@ -14,7 +15,7 @@ const FeedPost = ({ post, onPostClick }: IFeedPostProps) => {
 
   return (
     <li className={`${styles.post} animationFromLeft`} onClick={handleClick}>
-      <img src={post.imagePath} alt={post.name} />
+      <Image src={post.imagePath} alt={post.name} />
       <span className={styles.views}>{post.views}</span>
     </li>
   );
