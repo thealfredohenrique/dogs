@@ -1,7 +1,7 @@
 import { ImgHTMLAttributes, SyntheticEvent, useState } from "react";
 import styles from "./styles.module.css";
 
-const Image = ({ ...attributes }: ImgHTMLAttributes<HTMLImageElement>) => {
+const Image = ({ alt, ...attributes }: ImgHTMLAttributes<HTMLImageElement>) => {
   const [skeletonIsActive, setSkeletonIsActive] = useState(true);
 
   const handleLoad = ({ currentTarget }: SyntheticEvent<HTMLImageElement>) => {
@@ -12,7 +12,12 @@ const Image = ({ ...attributes }: ImgHTMLAttributes<HTMLImageElement>) => {
   return (
     <div className={styles.wrapper}>
       {skeletonIsActive && <div className={styles.skeleton}></div>}
-      <img className={styles.image} onLoad={handleLoad} {...attributes} />
+      <img
+        className={styles.image}
+        alt={alt}
+        onLoad={handleLoad}
+        {...attributes}
+      />
     </div>
   );
 };

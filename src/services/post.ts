@@ -10,7 +10,7 @@ interface IRequestCreatePost {
 interface IRequestGetPosts {
   page: number;
   quantity: number;
-  user: number;
+  userId?: number;
 }
 
 export interface IPost {
@@ -69,10 +69,10 @@ export const createPost = async ({
 export const getPosts = async ({
   page,
   quantity,
-  user,
+  userId,
 }: IRequestGetPosts): Promise<IPost[]> => {
   const response = await fetch(
-    `${ENDPOINT}/api/photo/?_page=${page}&_total=${quantity}&_user=${user}`,
+    `${ENDPOINT}/api/photo/?_page=${page}&_total=${quantity}&_user=${userId}`,
     {
       method: "GET",
       cache: "no-store",

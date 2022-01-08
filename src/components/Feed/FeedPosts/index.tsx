@@ -6,10 +6,20 @@ import Loading from "../../Loading";
 import styles from "./styles.module.css";
 
 interface IFeedPostsProps {
+  page: number;
+  quantity?: number;
+  userId?: number;
   onPostClick: Dispatch<SetStateAction<IPost | null>>;
+  onLoadAll: Dispatch<SetStateAction<boolean>>;
 }
 
-const FeedPosts = ({ onPostClick }: IFeedPostsProps) => {
+const FeedPosts = ({
+  page,
+  quantity = 6,
+  userId,
+  onPostClick,
+  onLoadAll,
+}: IFeedPostsProps) => {
   const [posts, setPosts] = useState<IPost[] | null>(null);
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
@@ -19,7 +29,8 @@ const FeedPosts = ({ onPostClick }: IFeedPostsProps) => {
       try {
         setError("");
         setLoading(true);
-        const response = await getPosts({ page: 1, quantity: 6, user: 0 });
+        const response = await getPosts({ page, quantity, userId });
+        if (response.length < quantity) onLoadAll(false);
         setPosts(response);
       } catch (e: any) {
         setError(e.message);
@@ -28,7 +39,7 @@ const FeedPosts = ({ onPostClick }: IFeedPostsProps) => {
       }
     };
     fetchPosts();
-  }, []);
+  }, [page, quantity, userId, onLoadAll]);
 
   if (error) {
     return <Error message={error} />;
