@@ -9,6 +9,7 @@ import Home from "./pages/Home";
 import Login from "./pages/Login";
 import "./App.css";
 import Profile from "./pages/Profile";
+import NotFound from "./pages/NotFound";
 
 const App = () => {
   return (
@@ -28,6 +29,7 @@ const App = () => {
           <Route path="/login/*" element={<Login />} />
           <Route path="/post/:id" element={<Post />} />
           <Route path="/profile/:id" element={<Profile />} />
+          <Route path="*" element={<NotFound />} />
         </Routes>
         <Footer />
       </UserStorage>

@@ -1,6 +1,7 @@
 import { useContext } from "react";
 import { Navigate, Route, Routes } from "react-router-dom";
 import { UserContext } from "../../contexts/UserContext";
+import NotFound from "../NotFound";
 import ForgotPassword from "./ForgotPassword";
 import ResetPassword from "./ResetPassword";
 import SignIn from "./SignIn";
@@ -20,6 +21,7 @@ const Login = () => {
           <Route path="sign-up" element={<SignUp />} />
           <Route path="forgot-password" element={<ForgotPassword />} />
           <Route path="reset-password" element={<ResetPassword />} />
+          <Route path="*" element={<NotFound />} />
         </Routes>
       </div>
     </section>
