@@ -12,6 +12,11 @@
   animation: scale-up 300ms forwards;
 }
 
+.single.content {
+  grid-template-columns: 1fr;
+  height: auto;
+}
+
 @keyframes scale-up {
   to {
     opacity: initial;
@@ -23,12 +28,18 @@
   padding: 2rem 2rem 0;
 }
 
+.single .details {
+  padding: 1rem 0 0;
+}
+
 .image {
   grid-row: 1 / 4;
 }
 
-.comments {
-  padding: 0 2rem;
+.single .image {
+  grid-row: 1;
+  border-radius: 0.4rem;
+  overflow: hidden;
 }
 
 @media (max-width: 64rem) {

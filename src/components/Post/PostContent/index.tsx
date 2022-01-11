@@ -9,14 +9,15 @@ import styles from "./styles.module.css";
 
 interface IPostContentProps {
   detailedPost: IDetailedPost;
+  isSingle?: boolean;
 }
 
-const PostContent = ({ detailedPost }: IPostContentProps) => {
+const PostContent = ({ detailedPost, isSingle }: IPostContentProps) => {
   const { post, comments } = detailedPost;
   const { user } = useContext(UserContext);
 
   return (
-    <div className={styles.content}>
+    <div className={`${styles.content} ${isSingle ? styles.single : ""}`}>
       <div className={styles.image}>
         <Image src={post.imagePath} alt={post.name} />
       </div>
@@ -43,7 +44,7 @@ const PostContent = ({ detailedPost }: IPostContentProps) => {
         </div>
       </div>
 
-      <PostComments id={post.id} comments={comments} />
+      <PostComments id={post.id} comments={comments} isSingle={isSingle} />
     </div>
   );
 };

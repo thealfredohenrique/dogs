@@ -7,9 +7,10 @@ import styles from "./styles.module.css";
 interface IPostCommentsProps {
   id: number;
   comments: IComment[];
+  isSingle?: boolean;
 }
 
-const PostComments = ({ id, comments }: IPostCommentsProps) => {
+const PostComments = ({ id, comments, isSingle }: IPostCommentsProps) => {
   const [commentList, setCommentList] = useState(comments);
   const commentsSection = useRef<HTMLUListElement>(null);
   const { isLoggedIn } = useContext(UserContext);
@@ -22,7 +23,10 @@ const PostComments = ({ id, comments }: IPostCommentsProps) => {
 
   return (
     <>
-      <ul ref={commentsSection} className={styles.comments}>
+      <ul
+        ref={commentsSection}
+        className={`${styles.comments} ${isSingle ? styles.single : ""}`}
+      >
         {commentList.map((comment) => (
           <li key={comment.id}>
             <b>{comment.author}: </b>
@@ -31,7 +35,13 @@ const PostComments = ({ id, comments }: IPostCommentsProps) => {
         ))}
       </ul>
 
-      {isLoggedIn && <PostComment id={id} onSubmitComment={setCommentList} />}
+      {isLoggedIn && (
+        <PostComment
+          id={id}
+          isSingle={isSingle}
+          onSubmitComment={setCommentList}
+        />
+      )}
     </>
   );
 };

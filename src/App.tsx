@@ -2,6 +2,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { UserStorage } from "./contexts/UserContext";
 import Footer from "./components/Footer";
 import Header from "./components/Header";
+import Post from "./components/Post";
 import ProtectedRoute from "./components/ProtectedRoute";
 import Account from "./pages/Account";
 import Home from "./pages/Home";
@@ -15,7 +16,6 @@ const App = () => {
         <Header />
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/login/*" element={<Login />} />
           <Route
             path="/account/*"
             element={
@@ -24,6 +24,8 @@ const App = () => {
               </ProtectedRoute>
             }
           />
+          <Route path="/login/*" element={<Login />} />
+          <Route path="/post/:id" element={<Post />} />
         </Routes>
         <Footer />
       </UserStorage>

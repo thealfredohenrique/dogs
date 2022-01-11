@@ -6,10 +6,11 @@ import styles from "./styles.module.css";
 
 interface IPostCommentProps {
   id: number;
+  isSingle?: boolean;
   onSubmitComment: Dispatch<SetStateAction<IComment[]>>;
 }
 
-const PostComment = ({ id, onSubmitComment }: IPostCommentProps) => {
+const PostComment = ({ id, isSingle, onSubmitComment }: IPostCommentProps) => {
   const [comment, setComment] = useState("");
   const [error, setError] = useState("");
 
@@ -31,7 +32,10 @@ const PostComment = ({ id, onSubmitComment }: IPostCommentProps) => {
   };
 
   return (
-    <form className={styles.form} onSubmit={handleSubmit}>
+    <form
+      className={`${styles.form} ${isSingle ? styles.single : ""}`}
+      onSubmit={handleSubmit}
+    >
       <textarea
         name="comment"
         id="comment"
