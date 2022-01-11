@@ -8,7 +8,7 @@ import styles from "./styles.module.css";
 interface IFeedPostsProps {
   page: number;
   quantity?: number;
-  userId?: number;
+  userId?: string | number;
   onPostClick: Dispatch<SetStateAction<IPost | null>>;
   onLoadAll: Dispatch<SetStateAction<boolean>>;
 }

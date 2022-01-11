@@ -5,7 +5,7 @@ import FeedPosts from "./FeedPosts";
 import styles from "./styles.module.css";
 
 interface IFeedProps {
-  userId?: number;
+  userId?: string | number;
 }
 
 const Feed = ({ userId }: IFeedProps) => {

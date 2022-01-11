@@ -10,7 +10,7 @@ interface IRequestCreatePost {
 interface IRequestGetPosts {
   page: number;
   quantity: number;
-  userId?: number;
+  userId?: string | number;
 }
 
 export interface IPost {
