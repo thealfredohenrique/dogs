@@ -68,5 +68,25 @@ export const recoverPassword = async (login: string, url: string) => {
     body: JSON.stringify({ login, url }),
   });
 
-  return !!response.ok;
+  if (!response.ok) {
+    throw new Error("Unable to send recovery link to your email.");
+  }
+
+  return true;
+};
+
+export const resetPassword = async (
+  key: string,
+  login: string,
+  password: string
+) => {
+  const response = await fetch(`${ENDPOINT}/api/password/reset`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ key, login, password }),
+  });
+
+  if (!response.ok) throw new Error("Your password could not be reset.");
+
+  return true;
 };
