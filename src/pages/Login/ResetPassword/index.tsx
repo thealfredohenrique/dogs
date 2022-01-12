@@ -2,6 +2,7 @@ import { FormEvent, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Button from "../../../components/Button";
 import Error from "../../../components/Error";
+import Head from "../../../components/Head";
 import Input from "../../../components/Input";
 import useForm from "../../../hooks/useForm";
 import { resetPassword } from "../../../services/login";
@@ -43,6 +44,7 @@ const ResetPassword = () => {
 
   return (
     <section>
+      <Head title="Reset password" />
       <h1 className="title">Reset password</h1>
       <form onSubmit={handleSubmit}>
         <Input

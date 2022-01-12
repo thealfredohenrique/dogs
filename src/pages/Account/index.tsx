@@ -1,6 +1,7 @@
 import { useContext } from "react";
 import { Route, Routes } from "react-router-dom";
 import Feed from "../../components/Feed";
+import Head from "../../components/Head";
 import { UserContext } from "../../contexts/UserContext";
 import NotFound from "../NotFound";
 import AccountHeader from "./AccountHeader";
@@ -13,6 +14,7 @@ const Account = () => {
 
   return (
     <section className="container">
+      <Head title="Account" />
       <AccountHeader />
       <Routes>
         <Route path="/" element={<Feed userId={user?.id} />} />

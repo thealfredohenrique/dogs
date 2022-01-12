@@ -2,6 +2,7 @@ import { FormEvent, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Button from "../../../components/Button";
 import Error from "../../../components/Error";
+import Head from "../../../components/Head";
 import Input from "../../../components/Input";
 import useForm from "../../../hooks/useForm";
 import { createPost } from "../../../services/post";
@@ -54,6 +55,7 @@ const Publish = () => {
 
   return (
     <section className={`${styles.publish} animationFromLeft`}>
+      <Head title="Publish" />
       <form onSubmit={handleSubmit}>
         <Input label="Name" type="text" name="name" {...name} />
         <Input label="Weight" type="number" name="weight" {...weight} />

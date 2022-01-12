@@ -2,6 +2,7 @@ import { FormEvent, useContext } from "react";
 import { Link } from "react-router-dom";
 import Button from "../../../components/Button";
 import Error from "../../../components/Error";
+import Head from "../../../components/Head";
 import Input from "../../../components/Input";
 import { UserContext } from "../../../contexts/UserContext";
 import useForm from "../../../hooks/useForm";
@@ -22,6 +23,7 @@ const SignIn = () => {
 
   return (
     <section className="animationFromLeft">
+      <Head title="Login" />
       <h1 className="title">Login</h1>
 
       <form className={styles.form} onSubmit={handleSubmit}>

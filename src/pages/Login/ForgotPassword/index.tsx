@@ -1,6 +1,7 @@
 import { FormEvent, useState } from "react";
 import Button from "../../../components/Button";
 import Error from "../../../components/Error";
+import Head from "../../../components/Head";
 import Input from "../../../components/Input";
 import useForm from "../../../hooks/useForm";
 import { recoverPassword } from "../../../services/login";
@@ -34,6 +35,7 @@ const ForgotPassword = () => {
 
   return (
     <section>
+      <Head title="Forgot password" />
       <h1 className="title">Forgot password?</h1>
 
       {emailWasSent ? (

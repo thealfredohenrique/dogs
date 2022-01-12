@@ -1,6 +1,7 @@
 import { FormEvent, useContext, useState } from "react";
 import Button from "../../../components/Button";
 import Error from "../../../components/Error";
+import Head from "../../../components/Head";
 import Input from "../../../components/Input";
 import { UserContext } from "../../../contexts/UserContext";
 import useForm from "../../../hooks/useForm";
@@ -35,6 +36,7 @@ const SignUp = () => {
 
   return (
     <section className="animationFromLeft">
+      <Head title="Sign up" />
       <h1 className="title">Sign up</h1>
 
       <form onSubmit={handleSubmit}>

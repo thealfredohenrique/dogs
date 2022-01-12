@@ -35,7 +35,7 @@ const AccountNavigation = () => {
         }`}
       >
         <NavLink to="/account" end>
-          <FeedIcon /> {isMobile && "My photos"}
+          <FeedIcon /> {isMobile && "My posts"}
         </NavLink>
         <NavLink to="/account/publish">
           <AddIcon /> {isMobile && "Publish"}
