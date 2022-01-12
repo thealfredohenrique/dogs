@@ -60,3 +60,13 @@ export const createUser = async (
   if (!response.ok) throw new Error("Username or e-mail already registered.");
   else return true;
 };
+
+export const recoverPassword = async (login: string, url: string) => {
+  const response = await fetch(`${ENDPOINT}/api/password/lost`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ login, url }),
+  });
+
+  return !!response.ok;
+};
