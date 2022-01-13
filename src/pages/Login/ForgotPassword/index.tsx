@@ -34,7 +34,7 @@ const ForgotPassword = () => {
   };
 
   return (
-    <section>
+    <section className="animationFromLeft">
       <Head title="Forgot password" />
       <h1 className="title">Forgot password?</h1>
 

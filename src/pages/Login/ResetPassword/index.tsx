@@ -43,7 +43,7 @@ const ResetPassword = () => {
   };
 
   return (
-    <section>
+    <section className="animationFromLeft">
       <Head title="Reset password" />
       <h1 className="title">Reset password</h1>
       <form onSubmit={handleSubmit}>
