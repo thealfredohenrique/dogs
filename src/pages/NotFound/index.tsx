@@ -1,5 +1,3 @@
-import styles from "./styles.module.css";
-
 const NotFound = () => {
   return (
     <div className="container box">

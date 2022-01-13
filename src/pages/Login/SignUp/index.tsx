@@ -6,7 +6,6 @@ import Input from "../../../components/Input";
 import { UserContext } from "../../../contexts/UserContext";
 import useForm from "../../../hooks/useForm";
 import { createUser } from "../../../services/login";
-import styles from "./styles.module.css";
 
 const SignUp = () => {
   const [error, setError] = useState("");

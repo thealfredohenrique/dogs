@@ -7,7 +7,6 @@ import NotFound from "../NotFound";
 import AccountHeader from "./AccountHeader";
 import Publish from "./Publish";
 import Statistics from "./Statistics";
-import styles from "./styles.module.css";
 
 const Account = () => {
   const { user } = useContext(UserContext);

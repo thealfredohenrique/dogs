@@ -5,7 +5,6 @@ import Error from "../Error";
 import Head from "../Head";
 import Loading from "../Loading";
 import PostContent from "./PostContent";
-import styles from "./styles.module.css";
 
 const Post = () => {
   const [detailedPost, setDetailedPost] = useState<IDetailedPost | null>(null);

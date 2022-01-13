@@ -1,7 +1,6 @@
 import { useParams } from "react-router-dom";
 import Feed from "../../components/Feed";
 import Head from "../../components/Head";
-import styles from "./styles.module.css";
 
 const Profile = () => {
   const { id } = useParams();

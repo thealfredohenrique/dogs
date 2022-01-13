@@ -6,7 +6,6 @@ import Head from "../../../components/Head";
 import Input from "../../../components/Input";
 import useForm from "../../../hooks/useForm";
 import { resetPassword } from "../../../services/login";
-import styles from "./styles.module.css";
 
 const ResetPassword = () => {
   const [key, setKey] = useState("");

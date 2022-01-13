@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import { IPost } from "../../services/post";
 import FeedModal from "./FeedModal";
 import FeedPosts from "./FeedPosts";
-import styles from "./styles.module.css";
 
 interface IFeedProps {
   userId?: string | number;

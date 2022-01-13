@@ -3,7 +3,6 @@ import Error from "../../../components/Error";
 import Head from "../../../components/Head";
 import Loading from "../../../components/Loading";
 import { getStatistics, IStatistics } from "../../../services/statistics";
-import styles from "./styles.module.css";
 
 const Chart = lazy(() => import("../../../components/Chart"));
 

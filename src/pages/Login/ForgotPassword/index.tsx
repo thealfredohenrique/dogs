@@ -5,7 +5,6 @@ import Head from "../../../components/Head";
 import Input from "../../../components/Input";
 import useForm from "../../../hooks/useForm";
 import { recoverPassword } from "../../../services/login";
-import styles from "./styles.module.css";
 
 const ForgotPassword = () => {
   const login = useForm();
