@@ -1,0 +1,29 @@
+.charts {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  margin-bottom: 2rem;
+}
+
+.chart {
+  display: grid;
+  align-items: center;
+  border-radius: 0.2rem;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+.views {
+  grid-column: 1/3;
+  font-size: 2rem;
+  padding: 2rem;
+}
+
+@media (max-width: 40rem) {
+  .charts {
+    grid-template-columns: 1fr;
+  }
+
+  .views {
+    grid-column: 1;
+  }
+}
