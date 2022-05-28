@@ -14,7 +14,7 @@ import NotFound from "./pages/NotFound";
 const App = () => {
   return (
     <div className="app">
-      <BrowserRouter>
+      <BrowserRouter basename={process.env.PUBLIC_URL}>
         <UserStorage>
           <Header />
           <main className="app-body">
